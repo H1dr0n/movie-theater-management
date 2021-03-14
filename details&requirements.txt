@@ -1,0 +1,21 @@
+Movie Theater Management 
+
+Consider about Star Cineplex. Everyday some people come to watch movie, some people come to buy advance tickets, new movie arrive, old movies discarded from the list. So, management is a big issue. Suppose you are given the responsibility to manage it. As you are very smart and know the programming you can simply make it, can’t you?
+
+Requirement and specification: 
+
+➢ Admin Mode 
+  • Login 
+  • Add movie 
+  • Set show time 
+  • Delete movie etc. 
+  • Logout 
+
+➢ Customer Mode: 
+  • Watch show time 
+  • Ticket price 
+  • Buy a ticket 
+  • Customer can also 
+  • sign up 
+  • Login 
+  • Logout 
