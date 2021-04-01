@@ -4,12 +4,12 @@ void welcome()
 {   
 
     
-    printf("%66s\n","Log in as:");
-    printf("%64s\n","1. Admin");
-    printf("%67s\n","2. Customer");
-    printf("%71s\n\n","3. Exit Program");
+    printf("\t\t\t\tLog in as:\n");
+    printf("\t\t\t\t1. Admin\n");
+    printf("\t\t\t\t2. Customer\n");
+    printf("\t\t\t\t3. Exit Program\n\n");
 
-    printf("%75s","Enter your choice: ");
+    printf("\t\t\t\tEnter your choice: ");
     scanf("%d",&choice);
     // fflush(stdin);
 
@@ -21,7 +21,7 @@ void welcome()
 
         case 3: system("cls"); ex(); break;
 
-        default: system("cls"); printf("%80s\n%86s\n\n","Invalid choice !","Please, enter a correct choice"); welcome(); break;
+        default: system("cls"); printf("\t\t\t\tInvalid choice !\n\t\t\tPlease, enter a correct choice\n\n"); welcome(); break;
     }
 }
 
@@ -32,31 +32,31 @@ void adminLogin()
     char pass[] = "admin123";
     char N[10],P[10];
 
-    printf("%80s\n\n","Admin Login Portal");
-    printf("%80s","Username: ");
+    printf("\t\t\t\tAdmin Login Portal\n\n");
+    printf("\t\t\t\tUsername: ");
     scanf("%s",N);
-    printf("%80s","Password: ");
-    scanf("%s",P);
+    //printf("\n");
+
 
     if(!(strcmp(name,N)))
     {
-        // printf("N==name\n");
+        printf("\t\t\t\tPassword: ");
+        scanf("%s",P);
         if(!(strcmp(pass,P)))
         {
             system("cls");
-            //printf("P==pass\n");
             admin();
         }
         else {
             system("cls");
-            printf("%80s\n%80s\n","You have entered incorrect password","Enter username and password again");
+            printf("\t\t\t\tYou have entered incorrect password.\n\t\t\t\tEnter username and password again.\n\n");
             adminLogin();
         }
     }
     else
     {
         system("cls");
-        printf("%80s\n%80s\n","You have entered incorrect username","Enter username and password again");
+        printf("\t\t\t\tYou have entered incorrect username.\n\t\t\t\tEnter username and password again.\n\n");
         adminLogin();
     }
 }
@@ -64,7 +64,7 @@ void adminLogin()
 void admin()
 {
 
-    printf("%80s\n\n","You are in ADMIN mode");
+    printf("\t\t\t\tYou are in ADMIN mode\n\n");
     printf("\t\t\t\t1. Add Movie\n");
     printf("\t\t\t\t2. Set Show Time\n");
     printf("\t\t\t\t3. Delete Movie\n");
@@ -87,8 +87,6 @@ void admin()
     }
 
 }
-
-
 
 int ex()
 {

@@ -4,10 +4,10 @@
 #include "admin_Fdec.h"
 #include "admin_Fdef.h"
 
-
 int main()
 {   
-    printf("\n\n%80s\n\n","Welcome to Movie Theatre");
+    system("cls");
+    printf("\t\t\t\tWelcome to Movie Theatre\n\n");
     welcome();
 
     return 0;
