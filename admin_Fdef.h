@@ -1,5 +1,38 @@
 int choice;
-FILE *fp;
+char findMovies;
+FILE *fp, *ft, *fs;
+struct movies
+{
+    int id;
+    char movName[25];
+    char date[10];
+    char time[8];
+} a;
+
+int getdata()
+{   
+    int t;
+    printf("\t\t\t\tEnter Movie  information below:\n\n");
+    printf("\t\t\t\t4 digit Movie unique id: ");
+    scanf("%d",&t);
+    if(checkid(t)==0)
+    {
+        printf("\t\t\t\tThe movie id already exists\n");
+        getch();
+        admin();
+        return 0;
+    }
+    a.id=t;
+    printf("\n\t\t\t\tBook name: ");
+    scanf("%s",a.movName);
+    printf("\n\t\t\t\tDate: ");
+    scanf("%s",a.date);
+    printf("\n\t\t\t\tTime:");
+    scanf("%s",a.time);
+
+    return 1;
+
+}
 void welcome()
 {   
 
@@ -77,7 +110,7 @@ void admin()
     {
         case 1: system("cls"); add_movie(); break;
 
-        // case 2: system("cls"); set_show_time(); admin(); break;
+        case 2: system("cls"); deleteMovies(); break;
 
         case 3: system("cls"); browse_movies(); break;
 
@@ -90,50 +123,124 @@ void admin()
 
 void add_movie()
 {   
-    char m_n[200], d_t[50], t_p[20] ;
-    fp = fopen("movies.txt","a+");
+    fp = fopen("movies.dat","ab+");
 
-    printf("\t\t\t\tEnter Movie name: ");
-    gets(m_n); fputs(m_n, fp); putc(' ',fp);
-    printf("\t\t\t\tEnter date and time (dd/mm/yy): ");
-    gets(d_t); fputs(d_t,fp); putc(' ',fp);
-    printf("\t\t\t\tEnter ticket price in TAKA: ");
-    gets(t_p); fputs(t_p,fp); putc(' ',fp);
-    putc('\n',fp);
-    fflush(stdin);
-    printf("\n\n\t\t\t\tAdd another movie? (Y/N): ");
-    if(getch()=='n')
+
+    if(getdata()==1)
     {
+        fseek(fp,0,SEEK_END);
+        fwrite(&a,sizeof(a),1,fp);
         fclose(fp);
-        system("cls");
-        admin();
+        printf("\t\t\t\tThe record is sucessfully saved");
+        printf("\t\t\t\tSave any more? (Y/N):");
+        if(getch()=='n')
+            admin();
+        else
+            system("cls");
 
-    }
-    else 
-    {
-        system("cls");
         add_movie();
     }
-    
 }
 
 
 void browse_movies()
 {
-    fp = fopen("movies.txt","r");
+    fp = fopen("movies.dat","rb");
 
-    char ch = fgetc(fp);
-    printf("\t\t\t\t");
-    while(ch!=EOF)
-    {   
-        putchar(ch);
-        ch = fgetc(fp);
+    while(fread(&a,sizeof(a),1,fp)==1)
+    {
+        printf("%d ",a.id);
+        printf("%s ",a.movName);
+        printf("%s ",a.date);
+        printf("%s ",a.time);
+
+        printf("\n");
+
     }
+    fclose(fp);
 
     printf("\n\n\t\t\t\tEnter any key to return to admin mode... ");
     getch();
     system("cls");
     admin();
+}
+
+void deleteMovies() //function that delete items from file fp
+{
+    system("cls");
+    int d;
+    char another='y';
+    while(another=='y') //infinite loop
+    {
+        system("cls");
+        
+        printf("\t\t\t\tEnter the book id delete: ");
+        scanf("%d",&d);
+
+        fp=fopen("movies.dat","rb+");
+        rewind(fp);
+        while(fread(&a,sizeof(a),1,fp)==1)
+        {
+            if(a.id==d)
+            {
+                printf("\t\t\t\tThe book record is available.\n");
+                printf("Movie name is %s\n",a.movName);
+
+                findMovies='t';
+
+            }
+            
+        }
+        if(findMovies!='t')
+        {
+            printf("\t\t\t\tNo record available.\n");
+            if(getch())
+                admin();
+        }
+        if(findMovies=='t')
+        {
+            printf("\t\t\t\tDo you want to delete it?(Y/N):");
+            if(getch()=='y')
+            {
+                ft=fopen("test.dat","wb+");  //temporary file for delete
+                rewind(fp);
+                while(fread(&a,sizeof(a),1,fp)==1)
+                {
+                    if(a.id!=d)
+                    {
+                        fseek(ft,0,SEEK_CUR);
+                        fwrite(&a,sizeof(a),1,ft); //write all in tempory file except that we want to delete
+                    }
+                }
+                fclose(ft);
+                fclose(fp);
+                remove("movies.dat");
+                rename("test.dat","movies.dat"); //copy all item from temporary file to fp except that we want to delete
+
+                fp=fopen("movies.dat","rb+");
+                if(findMovies=='t')
+                {
+                    printf("\t\t\t\tThe record successfully.\n");
+                    printf("Delete another record? (Y/N)");
+                }
+            }
+            else admin();
+
+            fflush(stdin);
+            another=getch();
+        }
+    }
+
+    admin();
+}
+
+int checkid(int t) //check whether the Movie is exist in theater or not
+{
+    rewind(fp);
+    while(fread(&a,sizeof(a),1,fp)==1)
+    if(a.id==t) return 0; //returns 0 if movie exits
+
+    return 1; //return 1 if it not
 }
 
 int ex()
