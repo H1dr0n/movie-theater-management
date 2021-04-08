@@ -9,7 +9,7 @@ struct movies
     char time[8];
 } a;
 
-int getdata()
+int getMovie()
 {   
     int t;
     printf("\t\t\t\tEnter Movie  information below:\n\n");
@@ -50,7 +50,7 @@ void welcome()
     {
         case 1: system("cls"); adminLogin(); break;
 
-        case 2: system("cls"); /*customer();*/ welcome(); break;
+        case 2: system("cls"); customer(); break;
 
         case 3: system("cls"); ex(); break;
 
@@ -125,8 +125,7 @@ void add_movie()
 {   
     fp = fopen("movies.dat","ab+");
 
-
-    if(getdata()==1)
+    if(getMovie()==1)
     {
         fseek(fp,0,SEEK_END);
         fwrite(&a,sizeof(a),1,fp);

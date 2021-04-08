@@ -7,7 +7,7 @@ void delete_movie();
 void browse_movies();
 void deleteMovies();
 
-int getdata();
+int getMovie();
 int checkid();
 
 int ex();
