@@ -19,7 +19,7 @@ void welcome()
     {
         case 1: system("cls"); adminlogin1(); break;
 
-        case 2: system("cls"); customer(); break;
+        case 2: system("cls"); customer1(); break;
 
         case 3: system("cls"); ex(); break;
 
@@ -380,7 +380,6 @@ int ex()
 {
     return 0;
 }
-
 
 
 void gotoxy (int x, int y)

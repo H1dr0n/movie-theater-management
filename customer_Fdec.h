@@ -16,6 +16,7 @@ struct buy_ticket
     char movName[25];
     char date[10];
     char time[8];
+    int price;
 }d;
 
 char uname[20];
@@ -23,6 +24,7 @@ char uname[20];
 FILE *fsu, *fli, *urm;
 int count=0;
 
+void customer1();
 void customer();
 void signup();
 void login();
