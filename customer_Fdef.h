@@ -27,7 +27,7 @@ void customer()
 
 void signup()
 {
-    fsu = fopen("userinfo.dat","ab+");
+    fsu = fopen("userinfo.txt","a+");
     if(getSignup()==1)
     {
         fseek(fsu,0,SEEK_END);
@@ -35,7 +35,7 @@ void signup()
         fclose(fsu);
     }
 
-    fli = fopen("logininfo.dat","ab+");
+    fli = fopen("logininfo.txt","a+");
     if(getLogin()==1)
     {
         fseek(fli,0,SEEK_END);
@@ -57,7 +57,7 @@ void login()
     printf("\t\t\t\tEnter Password:");
     scanf("%s",p_word); printf("%s\n",p_word);
 
-    fli = fopen("logininfo.dat","rb");
+    fli = fopen("logininfo.txt","r");
     //rewind(fli);
     while(fread(&c,sizeof(c),1,fli)==1)
     {   
@@ -130,7 +130,7 @@ int getLogin()
 
 void TestRead()
 {
-    fsu = fopen("userinfo.dat","rb");
+    fsu = fopen("userinfo.txt","r");
 
     while(fread(&b,sizeof(b),1,fsu)==1)
     {
@@ -148,7 +148,7 @@ void TestRead()
 
 void testRead()
 {
-    fli = fopen("logininfo.dat","rb");
+    fli = fopen("logininfo.txt","r");
     while(fread(&c,sizeof(c),1,fli)==1)
     {
         printf("%s ",c.username);
@@ -168,7 +168,7 @@ void browseMovToB()
     int ticket;
     count=0;
 
-    fp = fopen("movies.dat","rb");
+    fp = fopen("movies.txt","r");
 
     rewind(fp);
     while(fread(&a,sizeof(a),1,fp)==1)
@@ -234,7 +234,7 @@ void browseMovToB()
 
 void ur_movies()
 {
-    urm = fopen("ur_movies.dat","rb");
+    urm = fopen("ur_movies.txt","r");
     
     while(fread(&d,sizeof(d),1,urm)==1)
     {
@@ -267,7 +267,7 @@ void buyTicket()
     printf("date = %s\n",d.date);
     printf("time = %s\n",d.time);
 
-    urm = fopen("ur_movies.dat","ab+");
+    urm = fopen("ur_movies.txt","a+");
     fseek(urm,0,SEEK_END);
     fwrite(&d,sizeof(d),1,urm);
     fclose(urm);

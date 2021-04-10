@@ -1,3 +1,4 @@
+#include<windows.h>
 #include <stdio.h>
 #include <string.h>
 #include <conio.h>
@@ -10,8 +11,26 @@
 
 int main()
 {   
+    int i=0,j;
     system("cls");
-    printf("\t\t\t\tWelcome to Movie Theatre\n\n");
+    char d[25] = "Welcome to Movie Theater";
+    gotoxy(10,1);
+    for(j=0;j<20;j++)
+    {
+        Sleep(5);
+        printf("*");
+    }
+    for(j=0;j<25;j++)
+    {
+        Sleep(5);
+        printf("%c",d[j]);
+    }
+    for(j=0;j<20;j++)
+    {
+        Sleep(5);
+        printf("*");
+    }
+
     welcome();
 
     return 0;
