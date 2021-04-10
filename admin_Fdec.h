@@ -25,6 +25,6 @@ void deleteMovies();
 int getMovie();
 int checkid();
 
-int ex();
+int EXIT();
 
 void gotoxy (int x, int y);

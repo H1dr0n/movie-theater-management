@@ -21,7 +21,7 @@ void welcome()
 
         case 2: system("cls"); customer1(); break;
 
-        case 3: system("cls"); ex(); break;
+        case 3: system("cls"); EXIT(); break;
 
         default: 
         {
@@ -47,17 +47,17 @@ void adminlogin1()
     gotoxy(10,1);
     for(j=0;j<20;j++)
     {
-        Sleep(5);
+        Sleep(50);
         printf("*");
     }
     for(j=0;j<19;j++)
     {
-        Sleep(5);
+        Sleep(50);
         printf("%c",d[j]);
     }
     for(j=0;j<20;j++)
     {
-        Sleep(5);
+        Sleep(50);
         printf("*");
     }
     adminLogin();
@@ -376,8 +376,101 @@ void browse_movies()
     
 }
 
-int ex()
+int EXIT()
 {
+    system("cls");
+    gotoxy(20,3);
+    printf("Movie Theater Management");
+    gotoxy(22,4);
+    printf("Console Application");
+    gotoxy(27,5);
+    printf("Is Made by");
+
+    /*gotoxy(10,7);
+    printf("Anowar Hossain Sunny");
+    gotoxy(15,8);
+    printf("203-15-3870");
+    gotoxy(36,7);
+    printf("Rakibul Islam Shanto");
+    gotoxy(40,8);
+    printf("203-15-3871");
+    gotoxy(11,10);
+    printf("Faiza Noshin Tithi");
+    gotoxy(15,11);
+    printf("203-15-3878");
+    gotoxy(40,10);
+    printf("Jahid Imran");
+    gotoxy(40,11);
+    printf("203-15-3887"); */
+
+    char ch[40] = "Anowar Hossain Sunny";
+    int i;
+    gotoxy(10,7);
+    for(i=0;i<strlen(ch);i++)
+    {
+        Sleep(45);
+        printf("%c",ch[i]);
+    }
+    strcpy(ch,"203-15-3870");
+    gotoxy(15,8);
+    for(i=0;i<strlen(ch);i++)
+    {
+        Sleep(45);
+        printf("%c",ch[i]);
+    }
+    strcpy(ch,"Rakibul Islam Shanto");
+    gotoxy(36,7);
+    for(i=0;i<strlen(ch);i++)
+    {
+        Sleep(45);
+        printf("%c",ch[i]);
+    }
+    strcpy(ch,"203-15-3871");
+    gotoxy(40,8);
+    for(i=0;i<strlen(ch);i++)
+    {
+        Sleep(45);
+        printf("%c",ch[i]);
+    }
+    strcpy(ch,"Faiza Noshin Tithi");
+    gotoxy(11,10);
+    for(i=0;i<strlen(ch);i++)
+    {
+        Sleep(45);
+        printf("%c",ch[i]);
+    }
+    strcpy(ch,"203-15-3878");
+    gotoxy(15,11);
+    for(i=0;i<strlen(ch);i++)
+    {
+        Sleep(45);
+        printf("%c",ch[i]);
+    }
+    strcpy(ch,"Jahid Imran");
+    gotoxy(40,10);
+    for(i=0;i<strlen(ch);i++)
+    {
+        Sleep(45);
+        printf("%c",ch[i]);
+    }
+    strcpy(ch,"203-15-3887");
+    gotoxy(40,11);
+    for(i=0;i<strlen(ch);i++)
+    {
+        Sleep(45);
+        printf("%c",ch[i]);
+    }
+
+    
+    gotoxy(10,13);
+    printf("Thank you for using our console application");
+    for(i=4;i>=1;i--)
+    {   
+        Sleep(1000);
+        gotoxy(16,15);
+        printf("Exiting in %d second...........>",i);
+    }
+
     return 0;
 }
 

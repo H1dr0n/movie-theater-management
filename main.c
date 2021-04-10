@@ -17,17 +17,17 @@ int main()
     gotoxy(10,1);
     for(j=0;j<20;j++)
     {
-        Sleep(5);
+        Sleep(50);
         printf("*");
     }
     for(j=0;j<25;j++)
     {
-        Sleep(5);
+        Sleep(50);
         printf("%c",d[j]);
     }
     for(j=0;j<20;j++)
     {
-        Sleep(5);
+        Sleep(50);
         printf("*");
     }
 
