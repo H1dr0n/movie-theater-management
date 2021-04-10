@@ -8,8 +8,19 @@ struct login
     char username[20];
     char password[17];
 }c;
+struct buy_ticket
+{   
+    int quatity;
+    char username[20];
+    int id;
+    char movName[25];
+    char date[10];
+    char time[8];
+}d;
 
-FILE *fsu, *fli;
+char uname[20];
+
+FILE *fsu, *fli, *urm;
 int count=0;
 
 void customer();
@@ -17,8 +28,10 @@ void signup();
 void login();
 int getSignup();
 int getLogin();
-void ur_movie();
+void ur_movies();
 void in_login();
+void browseMovToB();
+void buyTicket();
 
 void TestRead();
 void testRead();

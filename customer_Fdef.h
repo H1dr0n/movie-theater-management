@@ -67,6 +67,7 @@ void login()
         {
             system("cls");
             fclose(fli); count++;
+            strcpy(uname,c.username);
             in_login();
         }
         /*printf("%s ",c.username);
@@ -77,7 +78,7 @@ void login()
             
         system("cls"); 
         fclose(fli);
-        printf("\t\t\t\tYou've entered invalid information.\n");
+        printf("\t\t\t\tYou've entered invalid log in information.\n");
         login();
     }
 }
@@ -93,9 +94,9 @@ void in_login()
 
     switch(choice)
     {
-        case 1: system("cls"); browse_movies(); break;
+        case 1: system("cls"); browseMovToB(); break;
 
-        case 2: system("cls"); ur_movie(); break;
+        case 2: system("cls"); ur_movies(); break;
 
         case 3: system("cls"); customer(); break;
 
@@ -162,7 +163,127 @@ void testRead()
     customer();
 }
 
-void ur_movie()
+void browseMovToB()
+{   
+    int ticket;
+    count=0;
+
+    fp = fopen("movies.dat","rb");
+
+    rewind(fp);
+    while(fread(&a,sizeof(a),1,fp)==1)
+    {
+        printf("%d ",a.id);
+        printf("%s ",a.movName);
+        printf("%s ",a.date);
+        printf("%s ",a.time);
+
+        printf("\n");
+    }
+    //fclose(fp);
+
+    printf("\n\n\t\t\t\tEnter movie id to buy ticket: ");
+    scanf("%d",&ticket);
+
+    rewind(fp);
+
+    while(fread(&a,sizeof(a),1,fp)==1)
+    {
+        if(ticket==a.id)
+        {
+            printf("Movie id = %d is avilable.\n",ticket);
+
+            //storing movie information in another struct to show them in ur_movies() function
+            d.id = a.id;
+            strcpy(d.username,uname);
+            strcpy(d.movName,a.movName);
+            strcpy(d.date,a.date);
+            strcpy(d.time,a.time);
+
+            fclose(fp);
+            count++;
+            break;
+        }
+    }
+    if(count==0)
+    {
+        printf("Movie id = %d is not avilable.\n",ticket); fclose(fp);
+        browseMovToB();
+    }
+    else if(count>0)
+    {
+        printf("\nDo you want to buy ticket for this movie? (Y/N): ");
+        if(getch()=='y')
+        {
+            buyTicket();
+        }
+        else
+        {
+            printf("\nPress \"Y\" to search for another movie to buy or press \"Enter\" to go back to Customer mode: ");
+
+            if(getch()=='y')
+                browseMovToB();
+            else 
+                customer();
+        }
+    }
+   
+
+}
+
+
+void ur_movies()
 {
-    puts("lol");
+    urm = fopen("ur_movies.dat","rb");
+    
+    while(fread(&d,sizeof(d),1,urm)==1)
+    {
+        if((!(strcmp(d.username,uname))))
+        {
+            printf("Quantity = %d\n",d.quatity);
+            printf("username = %s\n",d.username);
+            printf("id = %d\n",d.id);
+            printf("movname = %s\n",d.movName);
+            printf("date = %s\n",d.date);
+            printf("time = %s\n",d.time);
+        }
+        printf("\n");
+    }
+    fclose(urm);
+
+    printf("Y to return to customer mode: ");
+    getch(); login();
+}
+
+void buyTicket()
+{
+    printf("Enter how many tickets you want to buy for movie \"%s\": ",d.movName);
+    scanf("%d",&d.quatity);
+
+    printf("Quantity = %d\n",d.quatity);
+    printf("username = %s\n",d.username);
+    printf("id = %d\n",d.id);
+    printf("movname = %s\n",d.movName);
+    printf("date = %s\n",d.date);
+    printf("time = %s\n",d.time);
+
+    urm = fopen("ur_movies.dat","ab+");
+    fseek(urm,0,SEEK_END);
+    fwrite(&d,sizeof(d),1,urm);
+    fclose(urm);
+
+    printf("\nDo you want to buy another movie ticket (Y/N): ");
+        if(getch()=='y')
+        {
+            browseMovToB();
+        }
+        else
+        {
+            printf("\nPress \"Y\" to see your movie list or press \"Enter\" to go back to Customer mode: ");
+
+            if(getch()=='y')
+               ur_movies();
+            else 
+                customer();
+        }
 }

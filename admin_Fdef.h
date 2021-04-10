@@ -154,7 +154,6 @@ void browse_movies()
         printf("%s ",a.time);
 
         printf("\n");
-
     }
     fclose(fp);
 
