@@ -13,7 +13,7 @@ void welcome()
     gotoxy(10,9);
     printf("Enter your choice: ");
     scanf("%d",&choice);
-    // fflush(stdin);
+    fflush(stdin);
 
     switch(choice)
     {
@@ -29,7 +29,7 @@ void welcome()
             gotoxy(10,4);
             printf("Invalid choice !");
             gotoxy(10,5);
-            printf("Please, enter a correct choice");
+            printf("Please, enter a correct choice: ");
             Sleep(1000);
             system("cls");
             welcome();
@@ -41,7 +41,7 @@ void welcome()
 void adminlogin1()
 {   
     gotoxy(10,3);//slowmo
-    char d[25] = "Admin Login Portal";
+    char d[25] = " Admin Login Portal ";
     int j;
 
     gotoxy(10,1);
@@ -50,7 +50,7 @@ void adminlogin1()
         Sleep(50);
         printf("*");
     }
-    for(j=0;j<19;j++)
+    for(j=0;j<strlen(d);j++)
     {
         Sleep(50);
         printf("%c",d[j]);
@@ -73,7 +73,7 @@ void adminLogin()
     
     gotoxy(10,4);
     printf("Enter admin username: ");
-    scanf("%s",N);
+    gets(N);
     fflush(stdin);
     //printf("\n");
 
@@ -81,7 +81,7 @@ void adminLogin()
     {
         gotoxy(10,5);
         printf("Enter admin password: ");
-        scanf("%s",P);
+        gets(P);
         fflush(stdin);
 
         /*
@@ -140,6 +140,7 @@ void admin()
     gotoxy(10,8);
     printf("Enter your choice:");
     scanf("%d",&choice);
+    fflush(stdin);
 
     switch(choice)
     {
@@ -152,7 +153,7 @@ void admin()
             system("cls");
             browse_movies(); 
             
-            printf("Press enter to admin panel... ");
+            printf("Press ENTER to get back to  admin panel... ");
             getch();
             system("cls");
             admin();
@@ -199,6 +200,7 @@ int getMovie()
     gotoxy(10,5);
     printf("4 digit Movie unique id: ");
     scanf("%d",&t);
+    fflush(stdin);
 
     if(checkid(t)==0)
     {   
@@ -213,19 +215,20 @@ int getMovie()
     a.id=t;
     gotoxy(10,6);
     printf("Enter Movie name: ");
-    scanf("%s",a.movName);
+    gets(a.movName);
     fflush(stdin);
     gotoxy(10,7);
     printf("Enter Movie Date: ");
-    scanf("%s",a.date);
+    gets(a.date);
     fflush(stdin);
     gotoxy(10,8);
     printf("Enter Movie starting Time: ");
-    scanf("%s",a.time);
+    gets(a.time);
     fflush(stdin);
     gotoxy(10,9);
     printf("Enter ticket price: ");
     scanf("%d",&a.price);
+    fflush(stdin);
 
     return 1;
 
@@ -335,7 +338,7 @@ void deleteMovies() //function that delete items from file fp
 
         fflush(stdin);
     }
-    gotoxy(20,12);
+    gotoxy(10,12);
     printf("Press enter to go back to admin panel...");
     getch();
     system("cls");
@@ -347,10 +350,12 @@ void browse_movies()
     int i=0,j;
     system("cls");
     gotoxy(1,1);
-    printf("*******************MOVIE LIST*******************");
+    printf("************************** MOVIE LIST ************************");
     gotoxy(2,3);
-    printf("  ID  MOVIE NAME      DATE      TIME     PRICE ");
-    j=5;
+    printf("  ID      MOVIE NAME        DATE          TIME         PRICE  ");
+    gotoxy(1,4);
+    printf("--------------------------------------------------------------");
+    j=6;
 
     fp = fopen("movies.txt","r");
     rewind(fp);
@@ -359,13 +364,13 @@ void browse_movies()
     {   
         gotoxy(3,j);
         printf("%d",a.id);
-        gotoxy(9,j);
+        gotoxy(11,j);
         printf("%s",a.movName);
-        gotoxy(24,j);
+        gotoxy(29,j);
         printf("%s",a.date);
-        gotoxy(33,j);
+        gotoxy(43,j);
         printf("%s",a.time);
-        gotoxy(42,j);
+        gotoxy(58,j);
         printf("%d",a.price);
 
         printf("\n\n");
@@ -464,7 +469,7 @@ int EXIT()
     
     gotoxy(10,13);
     printf("Thank you for using our console application");
-    for(i=4;i>=1;i--)
+    for(i=3;i>=0;i--)
     {   
         Sleep(1000);
         gotoxy(16,15);

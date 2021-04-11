@@ -1,7 +1,7 @@
 void customer1()
 {   
     gotoxy(10,3);//slowmo
-    char d[25] = "Customer Login Portal";
+    char d[25] = " Customer Login Portal ";
     int j;
 
     gotoxy(10,1);
@@ -10,7 +10,7 @@ void customer1()
         Sleep(50);
         printf("*");
     }
-    for(j=0;j<22;j++)
+    for(j=0;j<strlen(d);j++)
     {
         Sleep(50);
         printf("%c",d[j]);
@@ -25,7 +25,7 @@ void customer1()
 
 void customer()
 {   
-    gotoxy(28,3);
+    gotoxy(30,3);
     printf("You are in Customer Mode.");
     gotoxy(10,5);
     printf("1. Sign up");
@@ -39,6 +39,7 @@ void customer()
     gotoxy(10,10);
     printf("Enter your choice: ");
     scanf("%d",&choice);
+    fflush(stdin);
 
     switch(choice)
     {
@@ -96,11 +97,11 @@ int getSignup()
 {   
     gotoxy(10,4);
     printf("Enter First Name: ");
-    scanf("%s",b.Fname);
+    gets(b.Fname);
     fflush(stdin);
     gotoxy(10,5);
     printf("Enter  Last Name: ");
-    scanf("%s",b.Lname);
+    gets(b.Lname);
     fflush(stdin);
 
     return 1;
@@ -110,11 +111,11 @@ int getLogin()
 {   
     gotoxy(10,6);
     printf("Enter   Username: ");
-    scanf("%s",c.username);
+    gets(c.username);
     fflush(stdin);
     gotoxy(10,7);
     printf("Enter   Password: ");
-    scanf("%s",c.password);
+    gets(c.password);
     fflush(stdin);
 
     return 1;
@@ -126,10 +127,10 @@ void login()
 
     gotoxy(10,4);
     printf("Enter Username: ");
-    scanf("%s",u_name); //printf("%s\n",u_name);
+    gets(u_name); fflush(stdin); //printf("%s\n",u_name);
     gotoxy(10,5);
     printf("Enter Password: ");
-    scanf("%s",p_word); //printf("%s\n",p_word);
+    gets(p_word); fflush(stdin); //printf("%s\n",p_word);
 
     fli = fopen("logininfo.txt","r");
     //rewind(fli);
@@ -174,6 +175,7 @@ void in_login()
     gotoxy(10,10);
     printf("Enter your choice: ");
     scanf("%d",&choice);
+    fflush(stdin);
 
     switch(choice)
     {
@@ -185,41 +187,6 @@ void in_login()
 
         default: system("cls"); gotoxy(13,2); printf("Invalid choice. Try again."); in_login(); break;
     }
-}
-
-void TestRead()
-{
-    fsu = fopen("userinfo.txt","r");
-
-    while(fread(&b,sizeof(b),1,fsu)==1)
-    {
-        printf("%s ",b.Fname);
-        printf("%s ",b.Lname);
-    }
-
-    fclose(fsu);
-
-    printf("\n\n\t\t\t\tEnter any key to return to Customer mode... ");
-    getch();
-    system("cls");
-    customer();
-}
-
-void testRead()
-{
-    fli = fopen("logininfo.txt","r");
-    while(fread(&c,sizeof(c),1,fli)==1)
-    {
-        printf("%s ",c.username);
-        printf("%s ",c.password);
-    }
-    fclose(fli);
-
-
-    printf("\n\n\t\t\t\tEnter any key to return to Customer mode... ");
-    getch();
-    system("cls");
-    customer();
 }
 
 void browseMovToB()
@@ -246,6 +213,7 @@ void browseMovToB()
     // printf("\n");
     printf("Enter movie id to buy ticket: ");
     scanf("%d",&ticket);
+    fflush(stdin);
 
     rewind(fp);
 
@@ -317,7 +285,7 @@ void buyTicket()
 {
     gotoxy(10,3);
     printf("Enter how many tickets you want to buy for movie \"%s\": ",d.movName);
-    scanf("%d",&d.quatity);
+    scanf("%d",&d.quatity); fflush(stdin);
     gotoxy(10,4);
     printf("You have bought %d tickets of \"%s\" movie.",d.quatity,d.movName);
 
@@ -387,10 +355,13 @@ void ur_movies()
     int i=0,j;
     system("cls");
     gotoxy(1,1);
-    printf("***********************MOVIE LIST***********************");
+    printf("************************** MOVIE LIST ****************************");
     gotoxy(2,3);
-    printf("  ID  MOVIE NAME      DATE      TIME     PRICE   QUANTITY");
-    j=5;
+    printf("  ID      MOVIE NAME        DATE       TIME       PRICE   QUANTITY");
+    //printf("  ID  MOVIE NAME      DATE      TIME     PRICE   QUANTITY");
+    gotoxy(1,4);
+    printf("--------------------------------------------------------------------");
+    j=6;
 
     urm = fopen("ur_movies.txt","r");
     rewind(urm);
@@ -401,15 +372,15 @@ void ur_movies()
         {
             gotoxy(3,j);
             printf("%d",d.id);
-            gotoxy(9,j);
+            gotoxy(12,j);
             printf("%s",d.movName);
-            gotoxy(24,j);
+            gotoxy(29,j);
             printf("%s",d.date);
-            gotoxy(33,j);
+            gotoxy(41,j);
             printf("%s",d.time);
-            gotoxy(42,j);
+            gotoxy(54,j);
             printf("%d",d.price);
-            gotoxy(50,j);
+            gotoxy(63,j);
             printf("%d",d.quatity);
             printf("\n\n");
             j++;
@@ -421,4 +392,40 @@ void ur_movies()
     gotoxy(1,j+1);
     printf("Press ENTER to return to MY ACCOUNT...");
     getch(); system("cls"); in_login();
+}
+
+void TestRead()
+{
+    fsu = fopen("userinfo.txt","r");
+
+    while(fread(&b,sizeof(b),1,fsu)==1)
+    {
+        printf("%s ",b.Fname);
+        printf("%s ",b.Lname);
+    }
+
+    fclose(fsu);
+
+    gotoxy(10,4);
+    printf("Enter any key to return to Customer panel... ");
+    getch();
+    system("cls");
+    customer();
+}
+
+void testRead()
+{
+    fli = fopen("logininfo.txt","r");
+    while(fread(&c,sizeof(c),1,fli)==1)
+    {
+        printf("%s ",c.username);
+        printf("%s ",c.password);
+    }
+    fclose(fli);
+
+    gotoxy(10,4);
+    printf("Enter any key to return to Customer panel... ");
+    getch();
+    system("cls");
+    customer();
 }

@@ -13,14 +13,14 @@ int main()
 {   
     int i=0,j;
     system("cls");
-    char d[25] = "Welcome to Movie Theater";
+    char d[] = " Welcome to DIU Cineplex ";
     gotoxy(10,1);
-    for(j=0;j<20;j++)
+    for(j=0;j<19;j++)
     {
         Sleep(50);
         printf("*");
     }
-    for(j=0;j<25;j++)
+    for(j=0;j<strlen(d);j++)
     {
         Sleep(50);
         printf("%c",d[j]);
