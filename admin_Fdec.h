@@ -11,6 +11,7 @@ struct movies
 } a;
 
 COORD coord = {0, 0};
+int J=0;
 
 void welcome();
 

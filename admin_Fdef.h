@@ -254,19 +254,20 @@ void deleteMovies() //function that delete items from file fp
 {
     system("cls");
     int d;
-
-    system("cls");
-    gotoxy(10,3);
+    browse_movies();
+    
+    //gotoxy(30,10);
     printf("Enter the Movie id to delete: ");
     scanf("%d",&d);
 
     fp = fopen("movies.txt","r+");
     if(checkid(d)==1)
     {   
+        system("cls");
         fclose(fp);
+        gotoxy(10,3);
+        printf("The movie id %d does not exists.",d);
         gotoxy(10,5);
-        printf("The movie id does not exists.");
-        gotoxy(10,6);
         printf("Press enter to get back to admin panel...");
         getch();
         system("cls");
@@ -278,10 +279,11 @@ void deleteMovies() //function that delete items from file fp
     while(fread(&a,sizeof(a),1,fp)==1)
     {
         if(a.id==d)
-        {
-            gotoxy(10,5);
+        {   
+            system("cls");
+            gotoxy(10,3);
             printf("The Movie is available in our theater");
-            gotoxy(10,6);
+            gotoxy(10,5);
             printf("Movie name is %s\n",a.movName);
 
             findMovies='t';
@@ -291,9 +293,10 @@ void deleteMovies() //function that delete items from file fp
     }
     if(findMovies!='t')
     {   
-        gotoxy(10,8);
+        system("cls");
+        gotoxy(10,6);
         printf("%d movie id is not registered in our movie list",d);
-        gotoxy(10,10);
+        gotoxy(10,7);
         printf("Press enter to return to admin panel");
 
         if(getch())
@@ -301,7 +304,7 @@ void deleteMovies() //function that delete items from file fp
     }
     if(findMovies=='t')
     {   
-        gotoxy(10,8);
+        gotoxy(10,7);
         printf("Do you want to delete it?(Y/N):");
         if(getch()=='y')
         {
@@ -324,7 +327,7 @@ void deleteMovies() //function that delete items from file fp
             fp=fopen("movies.txt","r+");
             if(findMovies=='t')
             {   
-                gotoxy(10,10);
+                gotoxy(10,8);
                 printf("The movie is successfully deleted.\n");
                 fclose(fp);
             }
@@ -338,7 +341,7 @@ void deleteMovies() //function that delete items from file fp
 
         fflush(stdin);
     }
-    gotoxy(10,12);
+    gotoxy(10,10);
     printf("Press enter to go back to admin panel...");
     getch();
     system("cls");

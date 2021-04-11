@@ -33,5 +33,8 @@ int main()
 
     welcome();
 
+    //admin();
+    //customer();
+
     return 0;
 }
