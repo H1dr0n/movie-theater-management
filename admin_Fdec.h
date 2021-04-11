@@ -5,7 +5,7 @@ struct movies
 {
     int id;
     char movName[25];
-    char date[10];
+    char date[12];
     char time[8];
     int price;
 } a;

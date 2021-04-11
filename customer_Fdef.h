@@ -273,7 +273,7 @@ void browseMovToB()
             else 
             {
                 system("cls");
-                customer();
+                in_login();
             }
         }
     }

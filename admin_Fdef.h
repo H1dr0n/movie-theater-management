@@ -447,7 +447,7 @@ int EXIT()
         Sleep(45);
         printf("%c",ch[i]);
     }
-    strcpy(ch,"203-15-3878");
+    strcpy(ch,"203-15-3877");
     gotoxy(15,11);
     for(i=0;i<strlen(ch);i++)
     {
@@ -479,7 +479,7 @@ int EXIT()
         printf("Exiting in %d second...........>",i);
     }
 
-    return 0;
+    exit(0);
 }
 
 
