@@ -1,4 +1,4 @@
-#include<windows.h>
+#include <windows.h>
 #include <stdio.h>
 #include <string.h>
 #include <conio.h>
@@ -15,16 +15,18 @@ int main()
     system("cls");
     char d[] = " Welcome to DIU Cineplex ";
     gotoxy(10,1);
-    for(j=0;j<19;j++)
+    for(j=0;j<20;j++)
     {
         Sleep(50);
         printf("*");
     }
+
     for(j=0;j<strlen(d);j++)
     {
         Sleep(50);
         printf("%c",d[j]);
     }
+
     for(j=0;j<20;j++)
     {
         Sleep(50);

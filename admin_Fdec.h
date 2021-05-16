@@ -10,7 +10,7 @@ struct movies
     int price;
 } a;
 
-COORD coord = {0, 0};
+COORD coord = {0,0};
 int J=0;
 
 void welcome();

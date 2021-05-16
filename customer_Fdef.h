@@ -52,7 +52,7 @@ void customer()
             system("cls");
             browse_movies();
             printf("Press ENTER to go back to Customer panel...");
-            getch();
+            getch(); fflush(stdin);
             system("cls");
             customer();
             break;
@@ -60,9 +60,9 @@ void customer()
 
         case 4: system("cls"); welcome(); break;
 
-        case 5: system("cls"); TestRead(); break;
+        //case 5: system("cls"); TestRead(); break;
 
-        case 6: system("cls"); testRead(); break;
+        //case 6: system("cls"); testRead(); break;
     }
 }
 
@@ -88,7 +88,7 @@ void signup()
         gotoxy(10,10);
         printf("Press ENTER to Log in...");
     }
-    getch(); //customer();
+    getch(); fflush(stdin); //customer();
     system("cls");
     login();
 }
@@ -248,7 +248,7 @@ void browseMovToB()
         fclose(fp);
         gotoxy(10,3);
         printf("Press ENTER to search again...");
-        getch();
+        getch(); fflush(stdin);
         browseMovToB();
     }
     else if(count>0)
@@ -257,21 +257,25 @@ void browseMovToB()
         printf("Do you want to buy ticket for this movie? (Y/N): ");
         if(getch()=='y')
         {   
+            fflush(stdin);
             system("cls");
             buyTicket();
         }
         else
-        {   
+        {       
+            fflush(stdin);
             gotoxy(10,6);
             printf("Press \"Y\" to search for another movie to buy or press \"ENTER\" to go back to MY ACCOUNT: ");
 
             if(getch()=='y')
-            {
+            {   
+                fflush(stdin);
                 system("cls");
                 browseMovToB();
             }
             else 
-            {
+            {   
+                fflush(stdin);
                 system("cls");
                 in_login();
             }
@@ -307,21 +311,25 @@ void buyTicket()
     printf("Do you want to buy another movie ticket (Y/N): ");
         if(getch()=='y')
         {   
+            fflush(stdin);
             system("cls");
             browseMovToB();
         }
         else
-        {   
+        {       
+            fflush(stdin);
             gotoxy(10,7);
              printf("Press \"Y\" to see your movie list or press \"ENTER\" to go back to MY ACCOUNT: ");
 
             if(getch()=='y')
-            {
+            {   
+                fflush(stdin);
                 system("cls");
                 ur_movies();
             }
             else 
-            {
+            {   
+                fflush(stdin);
                 system("cls");
                 customer();
             }
@@ -391,9 +399,10 @@ void ur_movies()
     
     gotoxy(1,j+1);
     printf("Press ENTER to return to MY ACCOUNT...");
-    getch(); system("cls"); in_login();
+    getch(); fflush(stdin); system("cls"); in_login();
 }
 
+/*
 void TestRead()
 {
     fsu = fopen("userinfo.txt","r");
@@ -408,7 +417,7 @@ void TestRead()
 
     gotoxy(10,4);
     printf("Enter any key to return to Customer panel... ");
-    getch();
+    getch(); fflush(stdin);
     system("cls");
     customer();
 }
@@ -425,7 +434,8 @@ void testRead()
 
     gotoxy(10,4);
     printf("Enter any key to return to Customer panel... ");
-    getch();
+    getch(); fflush(stdin);
     system("cls");
     customer();
 }
+*/

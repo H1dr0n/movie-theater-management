@@ -1,16 +1,16 @@
 void welcome()
 {   
 
-    gotoxy(10,3);
+    gotoxy(31,3);
     printf("Log in as: ");
-    gotoxy(10,5);
+    gotoxy(31,5);
     printf("1. Admin");
-    gotoxy(10,6);
+    gotoxy(31,6);
     printf("2. Customer");
-    gotoxy(10,7);
+    gotoxy(31,7);
     printf("3. Exit Program");
 
-    gotoxy(10,9);
+    gotoxy(31,9);
     printf("Enter your choice: ");
     scanf("%d",&choice);
     fflush(stdin);
@@ -40,8 +40,8 @@ void welcome()
 
 void adminlogin1()
 {   
-    gotoxy(10,3);//slowmo
-    char d[25] = " Admin Login Portal ";
+    gotoxy(10,3); //slowmo
+    char d[] = " Admin Login Portal ";
     int j;
 
     gotoxy(10,1);
@@ -77,27 +77,27 @@ void adminLogin()
     fflush(stdin);
     //printf("\n");
 
-    if(!(strcmp(name,N)))
+    if((strcmp(name,N))==0) //admin admin
     {
         gotoxy(10,5);
         printf("Enter admin password: ");
-        gets(P);
-        fflush(stdin);
+        //gets(P);
+        //fflush(stdin);
 
-        /*
+        
         //Hides password 
         while(ch!=13)
         {
             ch = getch();
             if(ch!=13 && ch!=8)
             {
-                putch("*");
+                //putch("*");
+                printf("*");
                 P[i] = ch;
                 i++;
             }
         }
         P[i]='\0';
-        */
 
         if(!(strcmp(pass,P)))
         {
@@ -110,7 +110,7 @@ void adminLogin()
             printf("You have entered incorrect password.");
             gotoxy(10,2);
             printf("Enter username and password again.");
-            adminLogin();
+            adminLogin(); fflush(stdin);
         }
     }
     else
@@ -120,7 +120,7 @@ void adminLogin()
         printf("You have entered incorrect username.");
         gotoxy(10,2);
         printf("Enter username and password again.");
-        adminLogin();
+        adminLogin(); fflush(stdin);
     }
 }
 
@@ -154,7 +154,7 @@ void admin()
             browse_movies(); 
             
             printf("Press ENTER to get back to  admin panel... ");
-            getch();
+            getch(); fflush(stdin);
             system("cls");
             admin();
 
@@ -181,14 +181,19 @@ void add_movie()
         gotoxy(10,12);
         printf("Save any more? (Y/N):");
         if(getch()=='n')
-        {
+        {   
+            fflush(stdin);
             system("cls");
             admin();
         }
         else
-            system("cls");
+        {
 
-        add_movie();
+            fflush(stdin);
+            system("cls");
+            add_movie();
+        }
+       
     }
 }
 
@@ -208,7 +213,7 @@ int getMovie()
         printf("The movie id already exists.");
         gotoxy(10,8);
         printf("Press enter to get back to admin panel...");
-        getch();
+        getch(); fflush(stdin);
         system("cls");
         admin();
     }
@@ -234,23 +239,25 @@ int getMovie()
 
 }
 
-int checkid(int t) //check whether the Movie is exist in theater or not
+int checkid(int t) //checking whether the Movie is exist in theater or not
 {   
     //fp = fopen("movies.txt","r+");
     rewind(fp);
     while(fread(&a,sizeof(a),1,fp)==1)
-    if(a.id==t)
-    {   
-        //fclose(fp);
-        return 0; //returns 0 if movie exits
+    {
+        if(a.id==t)
+        {   
+            //fclose(fp);
+            return 0; //returns 0 if movie exits
+        }
     }
 
     //fclose(fp);
-    return 1; //return 1 if it not
+    return 1; 
 }
 
 
-void deleteMovies() //function that delete items from file fp
+void deleteMovies() // deleting items from file fp
 {
     system("cls");
     int d;
@@ -269,7 +276,7 @@ void deleteMovies() //function that delete items from file fp
         printf("The movie id %d does not exists.",d);
         gotoxy(10,5);
         printf("Press enter to get back to admin panel...");
-        getch();
+        getch(); fflush(stdin);
         system("cls");
         admin();
     }
@@ -291,23 +298,27 @@ void deleteMovies() //function that delete items from file fp
         }
             
     }
-    if(findMovies!='t')
-    {   
-        system("cls");
-        gotoxy(10,6);
-        printf("%d movie id is not registered in our movie list",d);
-        gotoxy(10,7);
-        printf("Press enter to return to admin panel");
+    // if(findMovies!='t')
+    // {   
+    //     system("cls");
+    //     gotoxy(10,6);
+    //     printf("%d movie id is not registered in our movie list",d);
+    //     gotoxy(10,7);
+    //     printf("Press enter to return to admin panel");
 
-        if(getch())
-            admin();
-    }
+    //     if(getch())
+    //     {
+    //         fflush(stdin);
+    //         admin();
+    //     }
+    // }
     if(findMovies=='t')
     {   
         gotoxy(10,7);
         printf("Do you want to delete it?(Y/N):");
         if(getch()=='y')
-        {
+        {   
+            fflush(stdin);
             ft=fopen("test.txt","w+");  //temporary file for delete
             rewind(fp);
             while(fread(&a,sizeof(a),1,fp)==1)
@@ -334,7 +345,8 @@ void deleteMovies() //function that delete items from file fp
         }
 
         else
-        {
+        {   
+            fflush(stdin);
             system("cls");
             admin();
         }
@@ -343,7 +355,7 @@ void deleteMovies() //function that delete items from file fp
     }
     gotoxy(10,10);
     printf("Press enter to go back to admin panel...");
-    getch();
+    getch(); //fflush(stdin);
     system("cls");
     admin();
 }
@@ -376,7 +388,7 @@ void browse_movies()
         gotoxy(58,j);
         printf("%d",a.price);
 
-        printf("\n\n");
+        //printf("\n\n");
         j++;
     }
     fclose(fp);
