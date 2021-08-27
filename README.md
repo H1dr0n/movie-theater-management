@@ -49,4 +49,4 @@ The project is made with C programming language. Every information is stored loc
 
 ---
 
-This is my university project of semester L1T2. The project was very exciting for me as a beginner and I enjoyed every millisecond of it. There are still some minor bugs while deleting and then browsing the movies. Hopefully someday I'll fix 😊.  
+This is my university project of semester L1T2. The project was very exciting for me as a beginner and I enjoyed every millisecond of it. There are still some minor bugs while deleting and then browsing the movies. Hopefully someday I'll fix it 😊.  
